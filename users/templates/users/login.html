@@ -1,5 +1,5 @@
-{% extends "bio_products/base.html" %}
-{% load bootstrap3 %}
+{% extends "caring4us/base.html" %}
+{% load bootstrap4 %}
 {% block title %} Log in  {%endblock title %}
 {% block header %}
 Log in to your account
@@ -15,7 +15,7 @@ Log in to your account
     {% buttons %}
       <button name="submit" class="btn btn-primary">Log In</button>
     {% endbuttons %}
-    <input type="hidden" name="next" value="{% url 'bio_products:batch_view' %}" />
+    <input type="hidden" name="next" value="{% url 'caring4us:index' %}" />
 </form>
 </div>
 {% endblock content %}
