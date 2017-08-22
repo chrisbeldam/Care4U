@@ -1,0 +1,67 @@
+{% load bootstrap4 %} {% load bootstrap_themes %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+  <title>{% block title %}{%endblock title %} - Care4Us</title>
+  {% bootstrap_javascript %}
+  <link rel="stylesheet" type="text/css" href="https://bootswatch.com/paper/bootstrap.min.css">
+  {% block style %} {% endblock style %}
+</head>
+
+<body>
+  <div class="container">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Care4Us</a>
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Batches<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Batches</a></li>
+                  <li class="divider"></li>
+                  {% if user.groups.all.0.name == "staff" %}
+                  <li><a href="#"><span class="glyphicon glyphicon-plus"></span> Add New Batch</a></li>
+                  {% endif %}
+                  <li><a href="#"><span class="glyphicon glyphicon-search"></span> Batch Search</a></li>
+                </ul>
+                </li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Peptides<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Peptides</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-search"></span> Peptide Search</a></li>
+                    {% if user.groups.all.0.name == "staff" %}
+                    <li class="divider"></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-plus"></span> Add Peptides</a></li>
+                    {% endif %}
+                  </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              {% if user.is_authenticated %}
+              <li><a href="{% url 'users:logout' %}"><span class="glyphicon glyphicon-log-out"></span> Log Out {{ user.username }}</a></li>
+              {% else %}
+              <li><a href="{% url 'users:login' %}"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="page-header" style="margin-top:10%">
+        <h4>{% block header %}{% endblock header %}<h4>
+      </div>
+  </div>
+  <div class="container" id="block" style="width:100%">
+    {% block content %}{% endblock content %}
+  </div>
+</div>
+</body>
+
+</html>

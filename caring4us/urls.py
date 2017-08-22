@@ -6,6 +6,7 @@ from django.contrib.auth.views import login
 
 from . import views
 
+
 # URL Patterns for the site pages
 urlpatterns = [
 
